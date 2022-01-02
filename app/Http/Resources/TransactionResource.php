@@ -21,6 +21,7 @@ class TransactionResource extends JsonResource
             'nama_kategori'=> 'Kategori '.$this->category->name,
             'tanggal_transaksi' => $this->tanggal_transaksi,
             'jumlah' => $this->jumlah. ' Kantong',
+            'gambar' => $this->gambar,
             'description' => $this->description,
             'created_at' => $this->created_at,
         ];

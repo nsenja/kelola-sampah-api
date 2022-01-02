@@ -10,13 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+    protected $table = 'transactions';
     protected $fillable = [
         'category_id',
         'tanggal_transaksi',
         'jumlah',
         'description',
         'biaya',
-        'user_id'
+        'gambar'
+        // 'user_id'
     ];
 
     // protected $dates = ['tanggal_transaksi'];
@@ -30,13 +32,13 @@ class Transaction extends Model
     //     $this->attributes['jumlah'] = $value *100;
     // }
     
-    protected static function booted()
-    {
-        if (auth()->check()) {
-            static::addGlobalScope('by_user', function (Builder $builder) {
-                $builder->where('user_id', auth()->id());
-            });
-        }
-    }
+    // protected static function booted()
+    // {
+    //     if (auth()->check()) {
+    //         static::addGlobalScope('by_user', function (Builder $builder) {
+    //             $builder->where('user_id', auth()->id());
+    //         });
+    //     }
+    // }
 
 }

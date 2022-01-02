@@ -28,8 +28,19 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        $transaction = auth()->user()->transactions()->create($request->validated());
-        return new TransactionResource($transaction);
+        // $transaction = auth()->user()->transactions()->create($request->validated());
+        // return new Tran1sactionResource($transaction);
+        if ($request->file('gambar') != null) {
+            $img = $request->file('gambar')->store('gambar', 'public');
+        }
+        // return $request->tanggal_transaksi;
+        // $transaction = auth()->user()->transactions()->create($request->validated());
+        $transaction = Transaction::create($request->all());
+        $transaction->category_id = $request->category_id;
+        $transaction->gambar = $img;
+        $transaction->save();
+        // return $transaction;
+        return $transaction;
     }
 
     /**

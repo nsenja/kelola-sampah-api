@@ -21,9 +21,12 @@ use Illuminate\Validation\ValidationException;
 */
 
 
+Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class);
+    Route::apiResource('transactions', \App\Http\Controllers\Api\TransactionController::class);
+    Route::apiResource('volunteers', \App\Http\Controllers\Api\VolunteerController::class);
+    Route::apiResource('savings', \App\Http\Controllers\Api\SavingController::class);
 
 Route::post('login', [AuthController::class, 'login']);
-Route::post('coba', [AuthController::class, 'coba']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
 
@@ -33,12 +36,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class);
-    Route::apiResource('transactions', \App\Http\Controllers\Api\TransactionController::class);
-    Route::apiResource('volunteers', \App\Http\Controllers\Api\VolunteerController::class);
-    Route::apiResource('savings', \App\Http\Controllers\Api\SavingController::class);
-});
+// Route::group(['middleware' => 'auth:sanctum'], function () {
+//     Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class);
+//     Route::apiResource('transactions', \App\Http\Controllers\Api\TransactionController::class);
+//     Route::apiResource('volunteers', \App\Http\Controllers\Api\VolunteerController::class);
+//     Route::apiResource('savings', \App\Http\Controllers\Api\SavingController::class);
+// });
 
 
 Route::post('/sanctum/token', function (Request $request) {
